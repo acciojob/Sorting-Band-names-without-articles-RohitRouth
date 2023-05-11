@@ -1,15 +1,22 @@
-//your code here
-let bandNames = ['The Beatles', 'Aerosmith', 'Led Zeppelin', 'The Who', 'Nirvana', 'Rolling Stones', 'Pink Floyd'];
+const bandNames = ['The Beatles', 'Led Zeppelin', 'The Rolling Stones', 'Aerosmith', 'Nirvana'];
 
-// Remove articles from band names
-let regex = /^(a |an |the )/i;
-let sortedBands = bandNames.map(band => band.replace(regex, '').trim()).sort();
+function stripArticle(name) {
+  // Regular expression to match articles at the beginning of a string
+  const articleRegex = /^(a|an|the)\s/i;
+  return name.replace(articleRegex, '').trim();
+}
 
-// Get ul element and add li elements for each band name
-let ul = document.getElementById('band');
+const sortedBands = bandNames.sort((a, b) => {
+  if (stripArticle(a) > stripArticle(b)) {
+    return 1;
+  } else {
+    return -1;
+  }
+});
+
+const ul = document.querySelector('#bands');
 sortedBands.forEach(band => {
-  let li = document.createElement('li');
+  const li = document.createElement('li');
   li.textContent = band;
   ul.appendChild(li);
 });
-
