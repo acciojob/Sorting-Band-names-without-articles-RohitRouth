@@ -14,7 +14,7 @@ const sortedBands = bandNames.sort((a, b) => {
   }
 });
 
-const ul = document.querySelector('#bands');
+const ul = document.querySelector('#band');
 sortedBands.forEach(band => {
   const li = document.createElement('li');
   li.textContent = band;
